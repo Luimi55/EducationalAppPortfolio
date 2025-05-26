@@ -183,22 +183,9 @@ const Home = () => {
   return (
     <>
       <TopBar title="Home"/>
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onClick={()=>getDecksLocal()}>Get deck file</button>
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onClick={()=>getDeckContentLocal()}>Get deck content </button>
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onClick={()=>postDecksLocal()}>Add deck</button>
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onClick={()=>createFolderLocal()}>Create Folder</button>
-      <input type="file" className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onChange={addFile}/>
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' 
-      onClick={()=>downloadFileLocal()}>Download File</button>
-      <img src={image} alt="" />
+
 
       <div className='flex flex-row flex-wrap items-center justify-center gap-6 pt-4'>
-        {/* {[{title:"1"},{title:"1"},{title:"1"},{title:"1"},{title:"1"},{title:"1"},{title:"1"},{title:"1"},].map((deck, key)=>( */}
         {deckList.map((deck, key)=>(
             <button key={key} onClick={()=>handleSelectedDeck(deck)} className='w-76 h-40  border-2 border-black text-2xl hover:border-4'>{deck.title}</button>
         ))}
