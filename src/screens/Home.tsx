@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import DeckModel from '../models/DeckModel';
 import { useAppDispatch } from '../redux/hooks';
 import { setSelectedDeck } from '../redux/SelectedDeck';
+import DeckComponent from '../components/DeckComponent';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -60,12 +61,10 @@ const Home = () => {
   return (
     <>
       <TopBar title="Home"/>
-
-
-      <div className='flex flex-row flex-wrap items-center justify-center gap-6 pt-4'>
-        {deckList.map((deck, key)=>(
-            <button key={key} onClick={()=>handleSelectedDeck(deck)} className='w-76 h-40  border-2 border-black text-2xl hover:border-4'>{deck.title}</button>
-        ))}
+      <div className='flex flex-row flex-wrap items-center justify-center gap-16 px-16 py-8'>
+        {deckList.map((deck, key)=>{return(
+          <DeckComponent deck={deck}/>
+        )})}
       </div>
     </>
   )
