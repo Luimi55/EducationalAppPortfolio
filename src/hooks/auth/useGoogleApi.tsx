@@ -10,6 +10,17 @@ const  useGoogleApi = () => {
 
     const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+    const getUserInfoAsync = async ()=> {
+        const accessToken = getCookie(import.meta.env.VITE_AUTH_COOKIE);
+        return axios.get(`${BASE_URL}userInfo`, 
+        {
+            headers: {
+                token: `${accessToken}`,
+                Accept: 'application/json'
+            }
+        })
+    }
+
     /**
         * @deprecated 
     */
@@ -195,7 +206,8 @@ const  useGoogleApi = () => {
     postDeckFile,
     createDeckFileIfNotExist,
     addDeck,
-    getDeckFileContent
+    getDeckFileContent,
+    getUserInfoAsync
   }
 }
 

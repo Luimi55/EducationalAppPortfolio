@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import DeckModel from '../models/DeckModel';
 import { useAppDispatch } from '../redux/hooks';
 import { setSelectedDeck } from '../redux/SelectedDeck';
+import { setUserInfo } from '../redux/UserInfo';
 import DeckComponent from '../components/DeckComponent';
 
 const Home = () => {
@@ -16,13 +17,15 @@ const Home = () => {
   
   const {
     getDeckFile,
-    getDeckFileContent
+    getDeckFileContent,
+    getUserInfoAsync,
   } = useGoogleApi();
 
 
   useEffect(()=>{
     if (hasFetched.current) return;
     hasFetched.current = true;
+    getUserInfo()
     getDeckContentLocal()
   },[])
   
@@ -55,9 +58,21 @@ const Home = () => {
     }
   }
 
+  const getUserInfo = async ()=>{
+    const userInfo = await getUserInfoAsync();
+    if(userInfo.data && userInfo.data.picture){
+      dispatch(setUserInfo({
+        profileImage:userInfo.data.picture,
+        name:userInfo.data.name,
+        given_name:userInfo.data.given_name,
+        family_name:userInfo.data.family_name,
+      }))
+    }
+
+  }
 
 
-
+  
   return (
     <>
       <TopBar title="Home"/>

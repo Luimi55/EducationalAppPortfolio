@@ -14,7 +14,7 @@ const TopBar = (props : {title : string}) => {
           }}
           className="w-12 h-12"
         >
-          <img src="src\assets\menu.png" width="48" height="48"/>
+          <img className="cursor-pointer" src="src\assets\menu.png" width="34" height="34"/>
         </button>
         <p className="text-[22px] text-white">{props.title}</p>
       </div>
