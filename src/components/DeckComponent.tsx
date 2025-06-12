@@ -35,7 +35,7 @@ const DeckComponent = ({deck}: Props) => {
     p-4 
     shadow-[0px_0px_10px_2px_rgba(0,0,0,0.1),0px_10px_15px_-3px_rgba(0,0,0,0.1)]
     rounded-xl
-    hover:scale-108
+    hover:scale-105
     ' onClick={()=>handleSelectedDeck(deck)}>
         <div className='w-66 h-40'>
             <img className='w-full h-full object-cover'  src={image.toString()} alt="" />
