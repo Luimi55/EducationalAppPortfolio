@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { cardSlice } from './Card-slice'
 import { deckSlice } from './Deck-slice'
 import { SelectedDeckSlice } from './SelectedDeck'
+import { UserInfo } from './UserInfo'
 
 export const Store = configureStore({
   reducer: {
     card: cardSlice.reducer,
     selectedDeck: SelectedDeckSlice.reducer,
-    deck: deckSlice.reducer
+    deck: deckSlice.reducer,
+    userInfo: UserInfo.reducer,
   },
 })
 
