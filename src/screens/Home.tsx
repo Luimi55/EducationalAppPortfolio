@@ -8,11 +8,13 @@ import { useAppDispatch } from '../redux/hooks';
 import { setSelectedDeck } from '../redux/SelectedDeck';
 import { setUserInfo } from '../redux/UserInfo';
 import DeckComponent from '../components/DeckComponent';
+import Loading from '../components/Loading';
 
 const Home = () => {
   const navigate = useNavigate();
   const [deckList, setDeckList] = useState<DeckModel[]>([]);
   const hasFetched = useRef(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch();
   
   const {
@@ -25,6 +27,7 @@ const Home = () => {
   useEffect(()=>{
     if (hasFetched.current) return;
     hasFetched.current = true;
+    setShowLoading(true)
     getUserInfo()
     getDeckContentLocal()
   },[])
@@ -50,11 +53,13 @@ const Home = () => {
         const fileContent: DeckModel[] = fileContentResponse.data;
         setDeckList(fileContent)
       }
+      setShowLoading(false)
     } catch (err:any) {
       const status = err?.response?.status;
       if(status == 401){
         navigate("/login")
       }
+      setShowLoading(false)
     }
   }
 
@@ -72,6 +77,8 @@ const Home = () => {
   }
 
 
+
+
   
   return (
     <>
@@ -81,6 +88,8 @@ const Home = () => {
           <DeckComponent deck={deck}/>
         )})}
       </div>
+        <Loading show={showLoading}/>
+
     </>
   )
 }

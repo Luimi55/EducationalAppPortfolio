@@ -32,7 +32,7 @@ const NavMenu = (props : {opened : boolean, setOpened : ( _ : boolean) => void})
             <div className="relative max-w-[268px] h-[30px] bg-[#6E85EF]">
                 <div className="absolute bottom-[-1px] left-[-1px] w-full h-[20px] bg-white  border-black rounded-t-[25px]"></div>
             </div>  
-            <div className="flex flex-col px-5 gap-7">
+            <div className="flex flex-col px-5 gap-8">
                 <div 
                     className=" bg-white text-left text-xl cursor-pointer flex flex-row items-center gap-3 hover:font-medium"
                     onClick={() => {navigate("/")}}
@@ -45,7 +45,7 @@ const NavMenu = (props : {opened : boolean, setOpened : ( _ : boolean) => void})
                     className=" bg-white text-left text-xl cursor-pointer flex flex-row items-center gap-3  hover:font-medium"
                     onClick={() => {navigate("/select-format")}}
                 >
-                    <img src={deckImage} alt="" className="w-6 h-7"/>
+                    <img src={deckImage} alt="" className="w-6 h-8"/>
                     Create deck
                 </div>
                 <div 
