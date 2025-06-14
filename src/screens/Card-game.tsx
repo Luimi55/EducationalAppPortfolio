@@ -5,6 +5,8 @@ import { getCards } from '../redux/SelectedDeck'
 import CardModel from '../models/CardModel'
 import { useNavigate } from "react-router";
 import Button from '../components/Button'
+import Confetti from 'react-confetti'
+import { useWindowSize } from "@uidotdev/usehooks";
 
 
 const CardGame = () => {
@@ -13,7 +15,9 @@ const CardGame = () => {
   const [enabled, setEnabled] = useState<Boolean>(false);
   const [selectedCard, setSelectedCard] = useState<String>("");
   const [currentCard, setCurrentCard] = useState<CardModel>();
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const cards = useAppSelector(getCards)
+  const { width, height } = useWindowSize()
   
 
   useEffect(()=>{
@@ -36,6 +40,8 @@ const CardGame = () => {
     setSelectedCard(optionId)
     if(isCorrect){
       setEnabled(true)
+      setShowConfetti(true)
+      setTimeout(()=>{setShowConfetti(false)},5000)
     } else{
       setEnabled(false)
     }
@@ -43,6 +49,8 @@ const CardGame = () => {
 
   const nextCard = () =>{
     if(enabled && cardOrder){
+      setSelectedCard("")
+      setEnabled(false)
       const cardOrderInt : number = parseInt(cardOrder)
       const nextNumber: number = cardOrderInt+1;
       navigate("/card-game/"+nextNumber)
@@ -51,14 +59,30 @@ const CardGame = () => {
 
 
   return (
-    <div className='flex flex-col h-screen items-center justify-center'>
-      <p className='mt-9 mb-9 text-5xl'>{currentCard?.question}</p>
+    <div className='flex flex-col h-screen items-center justify-center p-10'>
+      <p className=' text-5xl'>{currentCard?.question}</p>
       <div className='flex md:flex-row flex-col gap-9 w-full flex-1 items-center justify-center'>
         {currentCard?.cardOptions.map((option, key)=>(
-          <img key={key} onClick={()=>onOptionClick(option.id, option.isCorrect)} className={`lg:h-70 lg:w-70 h-50 w-50 ${selectedCard==option.id&&option.isCorrect? "border-3 border-solid border-green-400": ""} ${selectedCard==option.id&&!option.isCorrect? "border-3 border-red-400": ""}`} src={option.image} alt="" />
+          <img 
+            key={key} 
+            onClick={()=>onOptionClick(option.id, option.isCorrect)}
+            alt="" 
+            className={`lg:h-70 lg:w-70 h-50 w-50 cursor-pointer
+              ${selectedCard==option.id&&option.isCorrect?
+                 "border-3 border-solid border-green-400": ""} 
+              ${selectedCard==option.id&&!option.isCorrect?
+                 "border-3 border-red-400": ""}
+            `}
+            src={option.image}
+          />
         ))}
       </div>
       <Button className={`${enabled? "bg-green-400": ""}`} text='Next' onClick={()=>nextCard()}/>
+      {showConfetti&&<Confetti
+        width={(width??0)-20}
+        height={(height??0)-20}
+        frameRate={30}
+      />}
     </div>
   )
 }
