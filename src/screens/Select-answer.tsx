@@ -26,7 +26,7 @@ const SelectAnswer = () => {
 
         <div className="flex flex-col items-center">
           <p className="mt-7 text-2xl text-center">
-            Seleccione la respuesta correcta
+            Choose the correct answer
           </p>
 
           <div className="flex flex-col items-center gap-y-6 mt-7">
@@ -44,7 +44,7 @@ const SelectAnswer = () => {
           </div>
 
           <Button
-            text="Guardar card"
+            text="Save card"
             onClick={handleOnClick}
           />
         </div>

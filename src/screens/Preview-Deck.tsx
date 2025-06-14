@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import { useNavigate } from "react-router";
 import TopBar from "../components/Top-bar";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -6,12 +7,14 @@ import useGoogleApi from '../hooks/auth/useGoogleApi';
 import { resetCardState } from "../redux/Card-slice";
 import TextInput from "../components/Text-input";
 import Button from "../components/Button";
+import Loading from '../components/Loading';
 
 const PreviewDeck = () => {
   const cards = useAppSelector(selectCards);
   const title = useAppSelector(selectTitle);
   const deck = useAppSelector(selectDeck);
   const dispatch = useAppDispatch();
+  const [showLoading, setShowLoading] = useState<boolean>(false)
 
   const {    
     addDeck
@@ -20,13 +23,16 @@ const PreviewDeck = () => {
 
   const handleSave = async () => {
     try {
+      setShowLoading(true)
       const r = await addDeck(deck);
       console.log(r);
       dispatch(resetCardState());
       dispatch(resetDeckState());
       navigate("/");
+      setShowLoading(false)
     }
     catch (err: any) {
+      setShowLoading(false)
       const status = err?.response?.status;
       if(status == 401){
         navigate("/login");
@@ -40,7 +46,7 @@ const PreviewDeck = () => {
 
       <div className="flex flex-col items-center px-11 py-6">
         <TextInput
-          placeholder="Ingresa título"
+          placeholder="Insert a title"
           value={title}
           setValue={setTitle}
         />
@@ -57,7 +63,7 @@ const PreviewDeck = () => {
         </div>
 
         <Button
-          text="Agregar otro card"
+          text="Add other card"
           reducedMt
           onClick={() => {
             dispatch(resetCardState());
@@ -66,10 +72,11 @@ const PreviewDeck = () => {
         />
 
         <Button
-          text="Guardar deck"
+          text="Save deck"
           reducedMt
           onClick={() => {handleSave()}}
         />
+        <Loading show={showLoading}/>
       </div>
     </>
   );

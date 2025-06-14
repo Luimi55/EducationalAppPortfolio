@@ -38,7 +38,7 @@ const MultipleChoiceForm = () => {
 
       <div className="flex flex-col items-center py-6">
         <TextInput 
-          placeholder="Ingresa pregunta"
+          placeholder="Insert a question"
           value={question}
           setValue={setQuestion}
         />
@@ -73,11 +73,11 @@ const MultipleChoiceForm = () => {
         />
 
         <label htmlFor="imageUploader" className="flex flex-row justify-center items-center w-76 h-40 mt-9 text-2xl border-2 border-black">
-          Agregar imagen
+          Add image
         </label>
 
         <Button
-          text="Siguiente"
+          text="Next"
           onClick={() => {navigate("/select-answer")}}
         />
       </div>

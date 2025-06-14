@@ -6,7 +6,7 @@ const SelectFormat = () => {
 
   const formats = [
     {
-      name: "Seleccion multiple",
+      name: "Multiple choise",
       route: "/multiple-choice-form",
     },
   ];
@@ -16,7 +16,7 @@ const SelectFormat = () => {
       <TopBar title="Create deck" />
       
       <div className="px-11 py-6">
-        <p className="text-2xl">Elije un formato</p>
+        <p className="text-2xl">Choose a format</p>
         
         <div className="flex flex-col items-center gap-y-6 pt-4">
           {formats.map((format, index) => (
