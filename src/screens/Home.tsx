@@ -84,6 +84,14 @@ const Home = () => {
     <>
       <TopBar title="Home"/>
       <div className='flex flex-row flex-wrap items-center justify-center gap-16 px-16 py-8'>
+        
+        {!showLoading&&deckList.length==0&&
+        <div className='flex flex-col items-center justify-center'>
+          <p className='text-3xl'>No decks found</p>
+          <p className='text-xl'>Add a Deck to start</p>
+        </div>
+        }
+
         {deckList.map((deck, key)=>{return(
           <DeckComponent deck={deck}/>
         )})}

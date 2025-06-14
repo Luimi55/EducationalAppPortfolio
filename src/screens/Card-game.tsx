@@ -28,6 +28,8 @@ const CardGame = () => {
     if(cardOrder){
       const cardOrderInt : number = parseInt(cardOrder)
       const tempCard = cards.find((card)=>card.order == cardOrderInt)
+    console.log(cards)
+
       if(tempCard){
         setCurrentCard(tempCard)
       } else {
@@ -51,6 +53,7 @@ const CardGame = () => {
     if(enabled && cardOrder){
       setSelectedCard("")
       setEnabled(false)
+      setShowConfetti(false)
       const cardOrderInt : number = parseInt(cardOrder)
       const nextNumber: number = cardOrderInt+1;
       navigate("/card-game/"+nextNumber)
@@ -81,7 +84,7 @@ const CardGame = () => {
       {showConfetti&&<Confetti
         width={(width??0)-20}
         height={(height??0)-20}
-        frameRate={30}
+        frameRate={35}
       />}
     </div>
   )

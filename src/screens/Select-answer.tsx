@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import TopBar from "../components/Top-bar";
-import { selectCard, selectCardOptions, setCardOrder, setRightChoice } from "../redux/Card-slice";
+import { selectCard, selectCardOptions, setRightChoice } from "../redux/Card-slice";
 import { addCard, selectCardOrder } from "../redux/Deck-slice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import Button from "../components/Button";
@@ -12,6 +12,13 @@ const SelectAnswer = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
+
+    const handleOnClick = () =>  {
+      const cardTemp = { ...card};
+      cardTemp.order = cardOrder;
+      dispatch(addCard(cardTemp));
+      navigate("/preview-deck");
+    }
     
     return (
       <>
@@ -38,11 +45,7 @@ const SelectAnswer = () => {
 
           <Button
             text="Guardar card"
-            onClick={() => {
-              dispatch(setCardOrder(cardOrder));
-              dispatch(addCard(card));
-              navigate("/preview-deck");
-            }}
+            onClick={handleOnClick}
           />
         </div>
       </>
