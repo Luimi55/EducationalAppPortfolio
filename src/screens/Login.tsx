@@ -30,8 +30,8 @@ const Login = (props: Props) => {
   });
 
   return (
-    <div className="grid grid-cols-3 h-screen">
-      <div className="flex flex-col items-center p-10">
+    <div className="grid grid-cols-3 grid-rows-1 h-screen">
+      <div className="flex flex-col items-center p-10 col-span-3 sm:col-span-1">
           <p className="text-4xl text-[#2a5fa3] font-medium">Educational App</p>
           <div className="flex-grow flex flex-col items-center justify-center">
             <p className="text-2xl mb-8">Sign in to your account</p>
@@ -53,7 +53,7 @@ const Login = (props: Props) => {
             <a className="text-blue-600 cursor-pointer" target="blank" href="https://www.linkedin.com/in/sim%C3%B3n-david-garc%C3%ADa-almonte-906826211/"> Simon Garcia</a>
           </p>
       </div>
-      <div className="col-span-2">
+      <div className="invisible sm:visible sm:col-span-2">
           <img className="w-full h-full object-cover" src={LoginImage} alt="" />
       </div>
     </div>

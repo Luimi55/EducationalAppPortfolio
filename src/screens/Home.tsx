@@ -83,7 +83,7 @@ const Home = () => {
   return (
     <>
       <TopBar title="Home"/>
-      <div className='flex flex-row flex-wrap items-center justify-center gap-16 px-16 py-8'>
+      <div className='flex flex-row flex-wrap items-center justify-center gap-16 px-20 py-8'>
         
         {!showLoading&&deckList.length==0&&
         <div className='flex flex-col items-center justify-center'>
