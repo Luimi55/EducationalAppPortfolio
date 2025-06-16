@@ -20,7 +20,7 @@ const NavMenu = (props : {opened : boolean, setOpened : ( _ : boolean) => void})
         onClick={() => {
             props.setOpened(false);
         }}
-        className={`absolute z-10 h-screen w-screen bg-black/70 ${props.opened ? "visible" : "invisible"}`}
+        className={`absolute z-10 h-screen w-full bg-black/70 ${props.opened ? "visible" : "invisible"}`}
       >
        
         <div className="relative w-5/8 max-w-[268px] h-screen bg-white z-20"> 

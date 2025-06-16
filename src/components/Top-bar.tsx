@@ -7,7 +7,7 @@ const TopBar = (props : {title : string}) => {
   return (
     <>
       <NavMenu opened={opened} setOpened={setOpened} />
-      <div className="flex flex-row w-screen h-16 items-center px-5 gap-x-9 bg-[#6E85EF]">
+      <div className="flex flex-row h-16 items-center px-5 gap-x-9 bg-[#6E85EF]">
         <button
           onClick={() => {
             setOpened(true);
