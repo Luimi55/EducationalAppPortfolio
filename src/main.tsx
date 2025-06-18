@@ -13,6 +13,7 @@ import SelectAnswer from './screens/Select-answer.tsx'
 import RequireAuth from './auth/RequireAuth.tsx'
 import CardGame from './screens/Card-game.tsx'
 import PreviewDeck from './screens/Preview-Deck.tsx'
+import EndGame from './screens/End-game.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
               {/* TODO: Nested route */}
               <Route path="/select-answer" Component={SelectAnswer}/> 
               <Route path="/card-game/:cardOrder" Component={CardGame}/> 
+              <Route path="/end-game" Component={EndGame}/> 
               <Route path="/preview-deck" Component={PreviewDeck}/>
             </Route>
           </Routes>

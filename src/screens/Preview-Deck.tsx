@@ -25,7 +25,6 @@ const PreviewDeck = () => {
     try {
       setShowLoading(true)
       const r = await addDeck(deck);
-      console.log(r);
       dispatch(resetCardState());
       dispatch(resetDeckState());
       navigate("/");

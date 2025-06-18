@@ -28,7 +28,6 @@ const CardGame = () => {
     if(cardOrder){
       const cardOrderInt : number = parseInt(cardOrder)
       const tempCard = cards.find((card)=>card.order == cardOrderInt)
-    console.log(cards)
 
       if(tempCard){
         setCurrentCard(tempCard)
@@ -43,7 +42,7 @@ const CardGame = () => {
     if(isCorrect){
       setEnabled(true)
       setShowConfetti(true)
-      setTimeout(()=>{setShowConfetti(false)},5000)
+      setTimeout(()=>{setShowConfetti(false)},7000)
     } else{
       setEnabled(false)
     }
@@ -54,9 +53,16 @@ const CardGame = () => {
       setSelectedCard("")
       setEnabled(false)
       setShowConfetti(false)
+
+
+      
       const cardOrderInt : number = parseInt(cardOrder)
-      const nextNumber: number = cardOrderInt+1;
-      navigate("/card-game/"+nextNumber)
+      if(cardOrderInt != cards.length){
+        const nextNumber: number = cardOrderInt+1;
+        navigate("/card-game/"+nextNumber)
+      }else {
+        navigate("/end-game")
+      }
     }
   }
 
@@ -84,7 +90,7 @@ const CardGame = () => {
       {showConfetti&&<Confetti
         width={(width??0)-20}
         height={(height??0)-20}
-        frameRate={35}
+        frameRate={36}
       />}
     </div>
   )
